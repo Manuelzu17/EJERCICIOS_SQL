@@ -645,7 +645,7 @@ FROM products;
 
 53. CHARACTER_LENGTH
 
-
+The CHARACTER_LENGTH function returns the number of characters in a string. In this example, the CHARACTER_LENGTH function is applied to the product_name column of the products table and the result is aliased as name_length. The query returns the product name and the length of the product name for each row in the products table.
 
 ```
 
@@ -656,93 +656,220 @@ FROM products;
 
 
 54. CONCAT
+The CONCAT function combines two or more strings into a single string. In this example, the || operator is used to concatenate the first_name and last_name columns of the employees table into a single string, separated by a space. The result is aliased as full_name. The query returns the full name of each employee in the employees table.
 
+```
+
+SELECT first_name || ' ' || last_name as full_name
+FROM employees;
+```
 
 
 55. CONCAT_WS
+The CONCAT_WS function is a shorthand for the CONCAT function with a separator. In this example, the CONCAT_WS function is used to concatenate the last_name, first_name, and middle_name columns of the employees table into a single string, separated by commas. The first argument to CONCAT_WS is the separator string, which is a comma followed by a space in this case. The result is aliased as full_name. The query returns the full name of each employee in the employees table.
 
+```
+
+SELECT CONCAT_WS(', ', last_name, first_name, middle_name) as full_name
+FROM employees;
+```
 
 
 56. FIELD
+Documentation: The FIELD function returns the index of a value in a list of values. In this example, the FIELD function is used to find the index of the product_type column in a list of product types. The first argument to FIELD is the column to search in, and the following arguments are the values to search for. The result is aliased as product_type_id. The query returns the product name and the index of the product type for each row in the products table.
 
+```
+
+SELECT product_name, FIELD(product_type, 'Electronics', 'Furniture', 'Clothing') as product_type_id
+FROM products;
+```
 
 
 57. FIND_IN_SET
+ The FIND_IN_SET function returns the index of a value in a comma-separated list of values. In this example, the FIND_IN_SET function is used to find the index of the product_type column in a comma-separated list of product types. The first argument to FIND_IN_SET is the value to search for, and the second argument is the list of values to search in. The result is aliased as product_type_id. The query returns the product name and the index of the product type for each row in the products table.
 
+```
+
+SELECT product_name, FIND_IN_SET(product_type, 'Electronics, Furniture, Clothing') as product_type_id
+FROM products;
+```
 
 
 58. FORMAT
+Documentation: The FORMAT function formats a numeric value as a string. In this example, the FORMAT function is used to format the purchase_amount column with two decimal places. The first argument to FORMAT is the numeric value to format, and the second argument is the number of decimal places to use. The result is aliased as purchase_amount. The query returns the customer name and the formatted purchase amount for each row in the purchases table.
 
+```
+
+SELECT customer_name, FORMAT(purchase_amount, 2) as purchase_amount
+FROM purchases;
+```
 
 
 59. INSERT
+The INSERT statement is used to insert data into a table. In this example, a new row is inserted into the customers table with the values 'John Doe', 'johndoe@example.com', and '123 Main St.' for the customer_name, customer_email, and customer_address columns, respectively.
+```
 
+INSERT INTO customers (customer_name, customer_email, customer_address)
+VALUES ('John Doe', 'johndoe@example.com', '123 Main St.');
+```
 
 
 60. INSTR
+ The INSTR function returns the index position of the first occurrence of a substring within a string. In this example, the INSTR function is used to find the first occurrence of the substring 'new' in the product_description column. The first argument to INSTR is the string to search in, and the second argument is the substring to search for. The result is aliased as new_mention. The query returns the product name and the index position of the first occurrence of the substring for each row in the products table.
 
+
+```
+
+SELECT product_name, INSTR(product_description, 'new') as new_mention
+FROM products;
+```
 
 
 61. LCASE
+The LCASE function returns a string in lowercase. In this example, the LCASE function is used to convert the customer_email column to lowercase. The argument to LCASE is the string to convert. The result is aliased as lower_email. The query returns the customer name and the lowercase email for each row in the customers table.
+```
 
+SELECT customer_name, LCASE(customer_email) as lower_email
+FROM customers;
+```
 
 
 62. LEFT
+Documentation: The LEFT function returns a specified number of characters from the beginning of a string. In this example, the LEFT function is used to retrieve the first 20 characters from the product_description column. The first argument to LEFT is the string to extract from, and the second argument is the number of characters to extract. The result is aliased as short_description. The query returns the product name and a shortened version of the product description for each row in the products table.
 
+```
+
+SELECT product_name, LEFT(product_description, 20) as short_description
+FROM products;
+```
 
 
 63. LENGTH
+Documentation: The LENGTH function returns the length of a string in characters. In this example, the LENGTH function is used to determine the length of the product_description column. The argument to LENGTH is the string to measure. The result is aliased as description_length. The query returns the product name and the length of the product description for each row in the products table.
+```
 
+SELECT product_name, LENGTH(product_description) as description_length
+FROM products;
+```
 
 
 64. LOCATE
 
+Documentation: The LOCATE function returns the position of the first occurrence of a substring within a string. In this example, the LOCATE function is used to find the first occurrence of the substring 'new' in the product_description column. The first argument to LOCATE is the substring to search for, and the second argument is the string to search in. The result is aliased as new_mention. The query returns the product name and the index position of the first occurrence of the substring for each row in the products table.
+```
 
+SELECT product_name, LOCATE('new', product_description) as new_mention
+FROM products;
+
+```
 
 65. LOWER
+Documentation: The LOWER function returns a string with all the alphabetic characters converted to lowercase. In this example, the LOWER function is used to convert the product_description column to lowercase. The argument to LOWER is the string to convert. The result is aliased as lower_description. The query returns the product name and the lowercase version of the product description for each row in the products table.
 
+```
+
+SELECT product_name, LOWER(product_description) as lower_description
+FROM products;
+```
 
 
 66. LPAD
+Documentation: The LPAD function returns a string that is left-padded with a specified string to a certain length. In this example, the LPAD function is used to pad the product_code column with zeros to a length of 8 characters. The first argument to LPAD is the string to pad, the second argument is the desired length of the padded string, and the third argument is the string to use for padding. The result is aliased as padded_code. The query returns the product name and the padded product code for each row in the products table.
 
+```
+SELECT product_name, LPAD(product_code, 8, '0') as padded_code
+FROM products;
+```
 
 
 67. LTRIM
+The LTRIM function returns a string with leading spaces removed. In this example, the LTRIM function is used to remove leading spaces from the product_description column. The argument to LTRIM is the string to trim. The result is aliased as trimmed_description. The query returns the product name and the trimmed product description for each row in the products table.
 
+```
+
+SELECT product_name, LTRIM(product_description) as trimmed_description
+FROM products;
+```
 
 
 68. MID
+The MID function returns a substring from a string, starting from a specified position and for a specified length. In this example, the MID function is used to extract the first 20 characters from the product_description column. The first argument to MID is the string to extract the substring from, the second argument is the starting position of the substring, and the third argument is the length of the substring. The result is aliased as first_20_chars. The query returns the product name and the first 20 characters of the product description for each row in the products table.
+```
 
+SELECT product_name, MID(product_description, 1, 20) as first_20_chars
+FROM products;
+```
 
 
 69. POSITION
+The POSITION function returns the position of the first occurrence of a substring within a string. In this example, the POSITION function is used to find the position of the word "price" within the product_description column. The first argument to POSITION is the substring to search for, and the second argument is the string to search within. The result is aliased as price_position. The query returns the product name and the position of the word "price" within the product description for each row in the products table.
 
+```
+
+SELECT product_name, POSITION('price' IN product_description) as price_position
+FROM products;
+```
 
 
 70. REPEAT
+Documentation: The REPEAT function returns a string that is repeated a specified number of times. In this example, the REPEAT function is used to repeat the product_description column two times. The first argument to REPEAT is the string to repeat, and the second argument is the number of times to repeat it. The result is aliased as repeated_description. The query returns the product name and the repeated product description for each row in the products table.
 
+```
+SELECT product_name, REPEAT(product_description, 2) as repeated_description
+FROM products;
+```
 
 
 71. REPLACE
+The REPLACE function replaces all occurrences of a specified string within another string. In this example, the REPLACE function is used to replace the word "old" with the word "new" within the product_description column. The first argument to REPLACE is the string to modify, the second argument is the string to search for, and the third argument is the string to replace with. The result is aliased as updated_description. The query returns the product name and the updated product description for each row in the products table.
+```
 
+SELECT product_name, REPLACE(product_description, 'old', 'new') as updated_description
+FROM products;
+```
 
 
 72. REVERSE
+The REVERSE function returns the reverse of a string. In this example, the REVERSE function is used to reverse the product_description column. The argument to REVERSE is the string to reverse. The result is aliased as reversed_description. The query returns the product name and the reversed product description for each row in the products table.
 
+```
+SELECT product_name, REVERSE(product_description) as reversed_description
+FROM products;
+```
 
 
 73. RIGHT
+The RIGHT function returns a specified number of characters from the end of a string. In this example, the RIGHT function is used to extract the last five characters of the product_description column. The first argument to RIGHT is the string to extract from, and the second argument is the number of characters to extract. The result is aliased as last_five_chars. The query returns the product name and the last five characters of the product description for each row in the products table.
 
+```
+SELECT product_name, RIGHT(product_description, 5) as last_five_chars
+FROM products;
+```
 
 
 74. RPAD
+ The RPAD function returns a string that is right-padded with a specified character to a specified length. In this example, the RPAD function is used to pad the product_description column with asterisks to a length of 50 characters. The first argument to RPAD is the string to pad, the second argument is the target length, and the third argument is the padding character. The result is aliased as padded_description. The query returns the product name and the padded product description for each row in the products table.
 
+```
+SELECT product_name, RPAD(product_description, 50, '*') as padded_description
+FROM products;
+```
 
 
 75. SPACE
+The SPACE function returns a string of spaces of a specified length. In this example, the SPACE function is used to create a string of 10 spaces, which is concatenated to the front of the product_description column using the || operator. The result is aliased as indented_description. The query returns the product name and the indented product description for each row in the products table.
 
+```
+SELECT product_name, SPACE(10) || product_description as indented_description
+FROM products;
+```
 
 
 76. SUBSTR
+The SUBSTR function returns a portion of a string. In this example, the SUBSTR function is used to extract the first 20 characters of the product_description column. The first argument to SUBSTR is the string to extract from, the second argument is the starting position of the extracted string, and the third argument is the length of the extracted string. The result is aliased as short_description. The query returns the product name and the shortened product description for each row in the products table.
 
+```
+SELECT product_name, SUBSTR(product_description, 1, 20) as short_description
+FROM products;
+```
 
